@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head"></th:block>
+</head>
+<body>
+<header>
+    <th:block th:replace="fragments/navbar"></th:block>
+</header>
+<main class="justify-content-center">
+    <div class="container">
+        <div class="col-md-5 mx-auto">
+            <div class="logo mb-3">
+                <div class="col-md-12 text-center">
+                    <h1>Регистрация</h1>
+                </div>
+            </div>
+            <h6 th:if="${match}==true" th:text="#{passwords_doest_match}"
+                class="alert-danger text-center"></h6>
+            <h6 th:if="${emailAlready}==true" th:text="#{email_already_use}"
+                class="alert-danger text-center"></h6>
+            <h6 th:if="${usernameAlready}==true" th:text="#{username_already_use}"
+                class="alert-danger text-center"></h6>
+            <th:block th:each="err : ${errors}">
+                <h6 class="alert-danger text-center" th:text="${err.getDefaultMessage()}"></h6>
+            </th:block>
+            <form th:action="@{/register}" th:method="POST">
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                    </div>
+                    <select name="type" class="form-control" id="selectRegisterType">
+                        <option selected="">Изберете тип</option>
+                        <option>Компания</option>
+                        <option>Служител в компания</option>
+                        <option>Счетоводител</option>
+                    </select>
+                </div>
+                <div id="usernameField" class="form-group input-group" hidden="hidden">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="username" class="form-control" placeholder="Потребителско име" type="text">
+                </div>
+                <div class="form-group input-group" hidden="hidden" id="nameField">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="name" class="form-control" placeholder="Име" type="text">
+                </div>
+                <div class="form-group input-group" hidden="hidden" id="companyName">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="companyName" class="form-control" placeholder="Име на фирмата" type="text">
+                </div>
+                <div class="form-group input-group" hidden="hidden" id="eikField">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="eik" class="form-control" placeholder="ЕИК" type="text">
+                </div>
+                <div class="form-group input-group" hidden="hidden" id="companyAddress">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="companyAddress" class="form-control" placeholder="Адрес на фирмата" type="text">
+                </div>
+                <div class="form-group input-group" hidden="hidden" id="emailField">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    <input name="email" class="form-control" placeholder="Имейл" type="email">
+                </div>
+
+                <div class="form-group input-group" hidden="hidden" id="createPassword">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input name="password" class="form-control" placeholder="Create password" type="password">
+                </div>
+                <div class="form-group input-group" hidden="hidden" id="confirmPassword">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input name="confirmPassword" class="form-control" placeholder="Repeat password"
+                           type="password">
+                </div>
+                <div class="form-group" hidden="hidden" id="createAccBtn">
+                    <button type="submit" class="btn btn-primary btn-block">Създай</button>
+                </div>
+                <p class="text-center">Вече имате регистрация? <a href="/login">Вход</a></p>
+            </form>
+        </div>
+    </div>
+</main>
+<th:block th:replace="fragments/footer"></th:block>
+</body>
+</html>

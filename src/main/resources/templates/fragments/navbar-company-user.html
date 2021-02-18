@@ -1,0 +1,39 @@
+<th:block th:fragment="navbar-user">
+    <div class="navbar-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-dark  navbar-custom">
+            <a class="navbar-brand" href="/">AMEasy</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Nav"
+                    aria-controls="Nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="Nav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a th:text="#{nav-documents}" href="/documents" class="nav-link  effectgrad"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:text="#{nav-upload}" href="/upload" class="nav-link  effectgrad"></a>
+                    </li>
+                </ul>
+                <form class="form-inline" method="GET" th:action="@{/search/}" id="form">
+                    <div class="md-form my-0">
+                        <input class="form-control mr-sm-2" type="text" name="username" id="username" th:placeholder="#{search}"
+                               aria-label="Search">
+                    </div>
+                </form>
+                <ul class="navbar-nav mr-0">
+                    <li class="nav-item dropdown">
+                        <a th:text="#{myprofile}" class="nav-link dropdown-toggle effectgrad" data-toggle="dropdown"
+                           href="#"></a>
+                        <div class="dropdown-menu">
+                            <a th:text="#{myprofile}" class="dropdown-item " href="/myProfile"></a>
+                            <a th:text="#{settings}" class="dropdown-item" href="/myProfile/settings"></a>
+                            <a class="dropdown-item" th:text="#{logout}" href="/logout"
+                               onclick="location.href='/logout'"></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</th:block>

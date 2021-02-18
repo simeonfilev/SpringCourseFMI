@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<th:block th:fragment="navbar">
+    <th:block th:if="${authorization=='ROLE_ANONYMOUS'}">
+           <th:block th:replace="fragments/navbar-guest"></th:block>
+    </th:block>
+    <th:block th:if="${authorization == 'ROLE_ACCOUNTANT'}">
+        <th:block th:replace="fragments/navbar-accountant"></th:block>
+    </th:block>
+    <th:block th:if="${authorization == 'ROLE_COMPANY'}">
+        <th:block th:replace="fragments/navbar-company"></th:block>
+    </th:block>
+    <th:block th:if="${authorization=='ROLE_COMPANY_USER'}">
+        <th:block th:replace="fragments/navbar-company-user"></th:block>
+    </th:block>
+    <th:block th:if="${authorization=='ROLE_ADMIN'}">
+        <th:block th:replace="fragments/navbar-admin"></th:block>
+    </th:block>
+</th:block>
